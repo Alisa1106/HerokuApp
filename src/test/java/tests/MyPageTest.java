@@ -20,10 +20,10 @@ public class MyPageTest {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         driver.get("G:/TMS/ДЗ_ТЕСТ/HerokuApp/src/test/resources/hometask7.html");
-        String actualText = driver.findElement(By.xpath("//*[@class='table']//tr[2]/td[1]")).getText();
-        Assert.assertEquals(actualText, "One-time visit");
-        actualText = driver.findElement(By.xpath("//*[@class='table']//tr[4]/td[2]")).getText();
-        Assert.assertEquals(actualText, "30.00");
+        String actualTableCellText = driver.findElement(By.xpath("//*[@class='table']//tr[2]/td[1]")).getText();
+        Assert.assertEquals(actualTableCellText, "One-time visit");
+        actualTableCellText = driver.findElement(By.xpath("//*[@class='table']//tr[4]/td[2]")).getText();
+        Assert.assertEquals(actualTableCellText, "30.00");
         driver.quit();
     }
 
@@ -36,20 +36,20 @@ public class MyPageTest {
         driver.get("G:/TMS/ДЗ_ТЕСТ/HerokuApp/src/test/resources/hometask7.html");
         WebElement userName = driver.findElement(By.xpath("//*[@id='first_name']"));
         userName.sendKeys("User");
-        String actualText = userName.getAttribute("value");
-        Assert.assertEquals(actualText, "User");
+        String userNameFieldText = userName.getAttribute("value");
+        Assert.assertEquals(userNameFieldText, "User");
         WebElement email = driver.findElement(By.xpath("//*[@id='email']"));
         email.sendKeys("user@mail.ru");
-        actualText = email.getAttribute("value");
-        Assert.assertEquals(actualText, "user@mail.ru");
+        String emailFieldText = email.getAttribute("value");
+        Assert.assertEquals(emailFieldText, "user@mail.ru");
         WebElement password = driver.findElement(By.xpath("//*[@id='password']"));
         password.sendKeys("111111");
-        actualText = password.getAttribute("value");
-        Assert.assertEquals(actualText, "111111");
+        String passwordFieldText = password.getAttribute("value");
+        Assert.assertEquals(passwordFieldText, "111111");
         WebElement confirmPassword = driver.findElement(By.xpath("//*[@id='confirm']"));
         confirmPassword.sendKeys("111111");
-        actualText = confirmPassword.getAttribute("value");
-        Assert.assertEquals(actualText, "111111");
+        String confirmPasswordFieldText = confirmPassword.getAttribute("value");
+        Assert.assertEquals(confirmPasswordFieldText, "111111");
         driver.quit();
     }
 
