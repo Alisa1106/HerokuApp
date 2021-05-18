@@ -28,7 +28,7 @@ public class BaseTest {
         WebDriverManager.chromedriver().setup();
         HashMap<String, Object> chromePrefs = new HashMap<>();
         chromePrefs.put("profile.default_content_settings.popups", 0);
-        chromePrefs.put("download.default_directory", new File("src/test/resources/Download").getAbsolutePath());
+        chromePrefs.put("download.default_directory", System.getProperty("user.dir"));
         ChromeOptions options = new ChromeOptions();
         options.setExperimentalOption("prefs", chromePrefs);
         driver = new ChromeDriver(options);

@@ -3,6 +3,8 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import java.io.File;
+
 public class FileDownloaderPage extends BasePage {
 
     public FileDownloaderPage(WebDriver driver) {
@@ -33,16 +35,32 @@ public class FileDownloaderPage extends BasePage {
      *
      * @param fileName the file name
      */
-    public void clickDownloadFileLink(String fileName) {
+    public void clickDownloadFileLink(String fileName) throws InterruptedException {
         driver.findElement(By.xpath(String.format(DOWNLOAD_FILE_LINK, fileName))).click();
+        Thread.sleep(5000);
     }
 
     /**
-     * Sleep.
+     * Is file downloaded boolean.
      *
-     * @throws InterruptedException the interrupted exception
+     * @param downloadFileName the download file name
+     * @return the boolean
      */
-    public void sleep() throws InterruptedException {
-        Thread.sleep(5000);
+    public boolean isFileDownloaded(String downloadFileName) {
+        File folder = new File(System.getProperty("user.dir"));
+        File[] listOfFiles = folder.listFiles();
+        boolean found = false;
+        File f = null;
+        for (File listOfFile : listOfFiles) {
+            if (listOfFile.isFile()) {
+                String fileName = listOfFile.getName();
+                System.out.println("File " + listOfFile.getName());
+                if (fileName.matches(downloadFileName)) {
+                    f = new File(fileName);
+                    found = true;
+                }
+            }
+        }
+        return found;
     }
 }
